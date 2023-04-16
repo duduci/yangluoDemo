@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.anchorBL{
+
+    display:none;
+
+}
+
+li {
+    list-style-type: none;
+}
+ol{
+    list-style-type: none;
+}
+
+.nav li ol{
+    display: none;
+    position: relative;
+    float: left;
+    width: 120px;
+    height: 41px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav>li {
+    position: relative;
+    float: left;
+    width: 120px;
+    height: 41px;
+    text-align: center;
+}
+
+.nav li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 41px;
+    color: #333;
+}
+
+.nav>li>a:hover {
+    background-color: #eee;
+}
+
+.nav ul {
+    display: none;
+    position: absolute;
+    top: 41px;
+    left: 0;
+    width: 100%;
+    border-left: 1px solid #FECC5B;
+    border-right: 1px solid #FECC5B;
+    z-index: 9999;
+}
+
+.nav ul li {
+    border-bottom: 1px solid #FECC5B;
+}
+
+.nav ul li a:hover {
+    background-color: #FFF5DA;
+}
+.ysc-dynamic-layer{
+    /*重要*/
+    display: none;
+    user-select: none; /*禁止选中*/
+    pointer-events: none; /*鼠标穿透*/
+    /*重要*/
+    position: fixed;
+    top:0;
+    left:0;
+    width: 320px;
+    height:250px;
+    z-index: 99999;
+}
+.ysc-dynamic-layer .line{
+    position: absolute;
+    left:0;
+    width:0;
+    height:100px;
+    bottom: 0;
+    background:url("./line.png")
+}
+.ysc-dynamic-layer .main{
+    display: none;
+    position: absolute;
+    top:0;
+    left:50px;
+    right:0;
+    bottom: 100px;
+    background:url("./layer_border.png") no-repeat;
+    background-size:100% 100%;
+    color:white;
+    padding: 20px 5px 5px 20px;
+    font-size: 14px;
+    user-select:text;
+    pointer-events:auto;
+}
+

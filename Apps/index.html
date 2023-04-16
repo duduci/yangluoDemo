@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>阳逻港项目</title>
+    <link rel="stylesheet" href="../Build/Cesium/Widgets/widgets.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" type="text/css" href="movePrompt.css">
+    <style>body, html,#cesiumContainer {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}</style>
+</head>
+<body>
+<ul class="nav">
+    <li>
+        <a href="">地图切换</a>
+        <ul>
+            <li>
+            <a href="#" onclick="getamap()">高德地图</a>
+            </li>
+            <li>
+                <a href="#" onclick="getTDSLMap()">天地矢量</a>
+            </li>
+            <li>
+                <a href="#" onclick="getBaiduMap()">百度地图</a>
+            </li>
+            <li>
+                <a href="#" onclick="getTDYXMap()">天地影像</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="">添加模型</a>
+        <ul>
+            <li>
+                <a href="#" onclick="addMan()">人</a>
+                <a href="#" onclick="manMove()">运动路线显示</a>
+            </li>
+            <li>
+                <a href="#" onclick="addCar()">小车</a>
+                <a href="#" onclick="carMove()">运动路线显示</a>
+            </li>
+            <li>
+                <a href="#" onclick="addPlane()">飞机</a>
+                <a href="#" onclick="planeMove()">运动路线显示</a>
+            </li>
+            <li>
+                <a href="#" onclick="addCity()">城市模型</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">操作</a>
+        <ul>
+            <li>
+                <a href="#" onclick="AddCircleScanPostStage()">圆形扫描</a>
+            </li>
+            <li>
+                <a href="#" onclick="AddRadarScanPostStage()">雷达扫描</a>
+            </li>
+            <li>
+                <a href="#" onclick="addDoubleCircle()">双圆涟漪</a>
+            </li>
+            <li>
+                <a href="#" onclick="addShineEllipse()">闪圆</a>
+            </li>
+            <li>
+                <a href="#" onclick="addSpecialWall()">动态线和墙</a>
+            </li>
+            <li>
+                <a href="#" onclick="addSpecialLine()">动态线和点</a>
+            </li>
+            <li>
+                <a href="#" onclick="addLight()">灯光扫描</a>
+            </li>
+            <li>
+                <a href="#" onclick="addWindows()">添加动态弹窗</a>
+            </li>
+            <li>
+                <a href="#" onclick="addHTML()">添加HTML元素</a>
+            </li>
+            <li>
+                <a href="#" onclick="testRoad()">道路测试</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">echarts</a>
+        <ul>
+            <li>
+                <a href="#" onclick="addHeatMaps()">热力图</a>
+            </li>
+            <li>
+                <a href="#" onclick="addMovingMapsFirst()">迁徙图1</a>
+            </li>
+            <li>
+                <a href="#" onclick="addMovingMapsSecond()">迁徙图2</a>
+            </li>
+        </ul>
+    </li>
+    <li><a href="#" onclick="clean()">清除</a></li>
+</ul>
+<div style="position:absolute;top:50px;right:60px;z-index:999;">
+    <button type="button" id="measureSpaceDistance">测量距离</button>
+    <button type="button" id="measureSpaceArea">测量面积</button>
+    <button type="button" id="drawRectangle">绘制矩形</button>
+    <button type="button" id="drawCircle">绘制圆形</button>
+    <button type="button" id="drawPolygon">绘制多边形</button>
+    <button type="button" id="drawPolyline">绘制线</button>
+    <button type="button" id="drawBillboard">绘制点</button>
+</div>
+<div id="infowindow" style="position:absolute;top:10px;right:10px;z-index:999;background:#fff;width:200px;height:50px;font-size:13px;display:none;line-height:25px;">
+</div>
+<div id="latlng_show" style="width:340px;height:30px;position:absolute;bottom:40px;right:200px;z-index:1;font-size:15px;">
+    <div style="width:100px;height:30px;float:left;">
+        <font size="3" color="white">经度：<span id="longitude_show"></span></font>>
+    </div>
+    <div style="width:100px;height:30px;float:left;">
+        <font size="3" color="white">纬度：<span id="latitude_show"></span></font>>
+    </div>
+    <div style="width:140px;height:30px;float:left;">
+        <font size="3" color="white">视角高：<span id="altitude_show"></span>km</font>
+    </div>
+</div>
+<div id="cesiumContainer">
+    <div class="main-content">
+        <div class="allright" id="content" style="position:relative;">
+            <div id="centerPanel">
+                <div id="map" class="mapone">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='ysc-dynamic-layer' id='one'>
+    <div class='line'></div>
+    <div class='main'>
+    </div>
+</div>
+</body>
+<script src="../Build/Cesium/Cesium.js"></script>
+<script src="jQuery.js"></script>
+<script src="BaiduImageryProvider.js"></script>
+<script src="./CesiumHeatmap.js"></script>
+<script src="echarts.js"></script>
+<script src="turf.min.js"></script>
+<script src="measureSpaceArea.js"></script>
+<script src="measureSpaceDistance.js"></script>
+<script src="movePrompt.js"></script>
+<script src="createPolyline.js"></script>
+<script src="createPolygon.js"></script>
+<script src="createRectangle.js"></script>
+<script src="createCircle.js"></script>
+<script src="createBillboard.js"></script>
+<script src="index.js"></script>
+</html>
